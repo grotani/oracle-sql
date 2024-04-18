@@ -9,8 +9,8 @@ public class DBHelper {
 	public static Connection getConnection() throws Exception {
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		System.out.println("드라이버 로딩성공");
-
 		Connection conn = null;
+		// 
 		String dbUrl = "jdbc:oracle:thin:@shop_high?TNS_ADMIN=c:/oracle_wallet/Wallet_shop";
 		String dbuser = "admin";
 		// 로컬에서 설정파일 불러오기 보안 이슈 
