@@ -98,13 +98,12 @@
 			for(HashMap<String, Object> ed : empAndDeptList) {
 		%>
 			<tr>
-				<td><%=(Integer)(ed.get("empNO")) %></td>
-				<td><%=(String)(ed.get("ename")) %></td>
-				<td><%=(String)(ed.get("deptNo") )%></td>
-				<td><%=(String)(ed.get("dname")) %></td>
-				
+					<td><%=(Integer)(ed.get("empNo"))%></td>
+					<td><%=(String)(ed.get("ename"))%></td>
+					<td><%=(Integer)(ed.get("deptNo"))%></td>
+					<td><%=(String)(ed.get("dname"))%></td>
 			</tr>
-		<% 	
+		<% 		
 			}
 		%>
 	</table>

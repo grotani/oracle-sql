@@ -26,7 +26,7 @@ public class EmpDAO {
 			HashMap<String, Object> m =new HashMap<>();
 			m.put("empNo", rs.getInt("empNo"));
 			m.put("ename", rs.getString("ename"));
-			m.put("deptNO", rs.getString("deptNO"));
+			m.put("deptNo", rs.getInt("deptNo"));
 			m.put("dname", rs.getString("dname"));
 			list.add(m);
 		}
