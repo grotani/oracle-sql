@@ -16,7 +16,7 @@ public class EmpDAO {
 		Connection conn = DBHelper.getConnection();
 		
 		String sql = "SELECT"
-				+ " emp.empno empNo, emp.ename ename, emp.deptno deptNO,"
+				+ " emp.empno empNo, emp.ename ename, emp.deptno deptNo,"
 				+ " dept.dname dname"
 				+ " FROM emp INNER JOIN dept"
 				+ " ON emp.deptno = dept.deptno";
@@ -44,9 +44,9 @@ public class EmpDAO {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Emp e = new Emp();
-				e.empNo = rs.getInt("empNo");
-				e.ename = rs.getString("ename");
-				e.sal = rs.getDouble("sal");
+				e.setEmpNo(rs.getInt("empNo"));
+				e.setEname(rs.getString("ename"));
+				e.setSal(rs.getDouble("sal"));
 				
 				list.add(e);
 				
