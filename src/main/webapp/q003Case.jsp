@@ -19,8 +19,7 @@
 		<th>ename</th>
 		<th>job</th>
 		<th>color</th>
-	</tr>
-		
+	</tr>		
 		<%
 			for (HashMap<String, String> jColor : selectJobCaseList) {
 		%>
@@ -30,7 +29,7 @@
 		<td><%=jColor.get("job")%></td>
 		<td><%=jColor.get("color")%></td>					
 	</tr>		
-		<% 		
+		<% 
 			}
 		%>
 	</table>
