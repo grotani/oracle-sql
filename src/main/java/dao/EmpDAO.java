@@ -9,6 +9,69 @@ import java.util.HashMap;
 import vo.Emp;
 
 public class EmpDAO {
+	// q007selfJoin.jsp 
+	public static ArrayList<HashMap<String, Object>> selectSelfJoin()
+							throws Exception {
+		ArrayList<HashMap<String, Object>> list 
+				= new ArrayList<>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT e1.empno, e1.ename, e1.grade"
+				+ " ,NVL(e2.ename,'관리자없음')mgrName "
+				+ " ,NVL(e2.grade,0) mgrGrade"
+				+ " FROM emp e1 LEFT OUTER JOIN emp e2"
+				+ " ON e1.mgr = e2.empno"
+				+ " ORDER BY e1.empno ASC";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<>();
+			m.put("empno", rs.getInt("empno"));
+			m.put("ename", rs.getString("ename"));
+			m.put("grade", rs.getInt("grade"));
+			m.put("mgrName", rs.getString("mgrName"));
+			m.put("mgrGrade", rs.getInt("mgrGrade"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+	}
+	
+	// q006GroupBy.jsp
+	public static ArrayList<HashMap<String, Integer>> selectEmpSalStats() 
+								throws Exception {
+		ArrayList<HashMap<String, Integer>> list
+					= new ArrayList<>();
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT grade"
+				+ ", COUNT(*) count"
+				+ ", SUM(sal) sum"
+				+ ", AVG(sal) avg"
+				+ ", MAX(sal) max"
+				+ ", MIN(sal) min"
+				+ " FROM emp"
+				+ " GROUP BY grade"
+				+ " ORDER BY grade ASC";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		// 디버깅 
+		System.out.println(stmt);
+		ResultSet rs = stmt.executeQuery();
+		
+		while (rs.next()) {
+			HashMap<String, Integer> m = new HashMap<>();
+			m.put("grade", rs.getInt("grade"));
+			m.put("count", rs.getInt("count"));
+			m.put("sum", rs.getInt("sum"));
+			m.put("avg", rs.getInt("avg"));
+			m.put("max", rs.getInt("max"));
+			m.put("min", rs.getInt("min"));
+			list.add(m);
+		}
+		conn.close();
+		return list;
+		
+	}
+	
 	// q005OrderBy.jsp
 	public static ArrayList<Emp> selectEmpListSort(
 			String col, String sort) throws Exception {
